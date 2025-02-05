@@ -35,6 +35,10 @@ Aby korzystać z systemu sklepu, wykonaj następujące kroki:
 3. Zakończ transakcję, generując paragon
 4. Sprawdź stan magazynowy i analizuj dane sprzedażowe
 
+## Podgląd
+
+![Zrzuty ekranu](https://dev.pasierbski.com/screenshots.png "Zrzuty ekranu")
+
 ## Demo
 
 Możesz zobaczyć działającą wersję systemu sklepu, odwiedzając poniższy link: [wildfly.pasierbski.com/sklep-1.0-SNAPSHOT](https://wildfly.pasierbski.com/sklep-1.0-SNAPSHOT/)
@@ -44,7 +48,7 @@ Możesz zobaczyć działającą wersję systemu sklepu, odwiedzając poniższy l
 |Kasjer|kasjer|`demo`|
 |Administrator|admin|`demo`|
 
-> Uwaga: Jeśli dane logowania nie działają, naciśnij [ten link](https://dev.pasierbski.com/skleprestart) aby zresetować bazę danych do danych domyślnych.
+> Uwaga: W trybie demo zmiana haseł i części danych nie jest możliwa
 
 ## Licencja
 
