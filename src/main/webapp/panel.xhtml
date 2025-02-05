@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/templates/panel.xhtml">
+        <ui:param name="activePage" value="panel" />
+        <ui:define name="content">
+            <div class="main-greeting">
+                <h1>Cześć, #{sessionScope.user.username}!</h1>
+                <p>Miło Cię widzieć!</p>
+            </div>
+            <div class="error-message message-advanced">
+                <div class="message-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="message-text">
+                    <h2>Uwaga!</h2>
+                    <p>System jest w fazie rozwojowej. Część funkcji może nie działać poprawnie.</p>
+                </div>
+            </div>        
+            <section class="main-tiles">
+                <div class="main-tile main-tile-calendar">
+                    <h2>Kalendarz</h2>
+                    <div class="main-tile-calendar-navigation">
+                        <div></div>
+                        <div class="main-tile-calendar-navigation-monthname">
+                            #{calendarBean.monthName} #{calendarBean.year}
+                        </div>
+                        <div></div>
+                    </div>
+                    <div id="calendarPanel">
+                        <div class="main-tile-table main-tile-calendar-table">
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Pn</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Wt</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Śr</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Cz</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Pt</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">So</div>
+                            <div class="main-tile-calendar-table-day main-tile-calendar-table-day-dayname">Nd</div>
+        
+                            <!-- Puste komórki na początek miesiąca -->
+                            <ui:repeat var="i" begin="1" end="#{calendarBean.firstDayOfWeek}">
+                                <div class="main-tile-calendar-table-day main-tile-calendar-table-day-empty"></div>
+                            </ui:repeat>
+        
+                            <!-- Dni miesiąca -->
+                            <ui:repeat var="day" begin="1" end="#{calendarBean.daysInMonth}">
+                                <div class="main-tile-calendar-table-day #{day == calendarBean.today ? 'main-tile-calendar-table-day-today' : ''}">#{day}</div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

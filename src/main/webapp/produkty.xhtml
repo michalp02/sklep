@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/panel.xhtml">
+        <ui:param name="activePage" value="produkty" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile main-tile-students">
+                    <h1>Produkty</h1>
+                    <br/>
+                    <button class="button" onclick="window.location.href='produktNew.xhtml'">Dodaj produkt</button>
+                    <br/>
+                    <br/>
+                    <h:form>
+                        <div style="display: flex; gap: 10px;">
+                            <h:inputText value="#{produktListBB.searchQuery}" styleClass="simple-select" u:placeholder="Szukaj produktu" />
+                            <h:commandButton value="Szukaj" action="#{produktListBB.search}" styleClass="button" />
+                        </div>
+                    </h:form>
+                    <br/>
+                    <br/>
+                    <div class="main-tile-table main-tile-meetings">
+                        <ui:repeat var="produkt" value="#{produktListBB.getProdukty()}">
+                            <a class="main-tile-meeting" href="produkt.xhtml?id=#{produkt.productId}">
+                                <div class="main-tile-meeting-info">
+                                    <div class="main-tile-meeting-info-time">
+                                        <i class="fas fa-cube"></i> #{produkt.productName}
+                                    </div>
+                                </div>
+                                <div class="main-tile-meeting-button">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                            </a>
+                        </ui:repeat>
+                    </div>
+                    <br/>
+                    <br/>
+                    <h:form>
+                        <h:commandButton value="Poprzednia" action="#{produktListBB.prevPage}" disabled="#{produktListBB.page == 0}" styleClass="button" />
+                        (<h:outputText value="#{produktListBB.page + 1}" /> z <h:outputText value="#{produktListBB.maxPage + 1}" />)
+                        <h:commandButton value="Następna" action="#{produktListBB.nextPage}" disabled="#{produktListBB.page == produktListBB.maxPage}" styleClass="button" />
+                    </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

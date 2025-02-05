@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{redirectBean.panelRedirect}" />
+    </f:metadata>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Panel</title>
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css" />
+        <link rel="stylesheet" href="#{resource['template:css/panel.css']}"/>
+        <link rel="icon" href="#{resource['template:img/sklep_icon.png']}"/>
+    </head>
+    <body>
+        <aside>
+            <a href="panel.xhtml" class="aside-logo">
+                <img src="#{resource['template:img/sklep_large.png']}" alt="Logo"/>
+            </a>
+            <a href="javascript:document.querySelector('aside').classList.toggle('show-menu')" class="aside-hamburger">
+                <i class="fas fa-bars"></i>
+            </a>
+            <nav class="aside-nav aside-nav-top">
+                <a href="panel.xhtml" class="aside-nav-element #{activePage eq 'panel' ? 'aside-nav-element-active' : ''}">
+                    <i class="fas fa-home"></i>
+                    <span>Strona główna</span>
+                </a>
+                <h:panelGroup rendered="#{sessionScope.user.role == 2}">
+                    <a href="pos.xhtml" class="aside-nav-element">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Tryb kasowy</span>
+                    </a>
+                </h:panelGroup>
+                    <h:panelGroup rendered="#{sessionScope.user.role == 1}">
+                    <a href="produkty.xhtml" class="aside-nav-element #{activePage eq 'produkty' ? 'aside-nav-element-active' : ''}">
+                        <i class="fas fa-inventory"></i>
+                        <span>Produkty</span>
+                    </a>
+                    <a href="pracownicy.xhtml" class="aside-nav-element #{activePage eq 'pracownicy' ? 'aside-nav-element-active' : ''}">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Pracownicy</span>
+                    </a>
+                </h:panelGroup>
+                <a href="profil.xhtml" class="aside-nav-element #{activePage eq 'profil' ? 'aside-nav-element-active' : ''}">
+                    <i class="fas fa-user"></i>
+                    <span>Moje konto</span>
+                </a>
+            </nav>
+            <nav class="aside-nav aside-nav-bottom">
+                <a href="https://github.com/michalp02/sklep" class="aside-nav-element" target="_blank">
+                    <i class="fas fa-question-circle"></i>
+                    <span>O projekcie</span>
+                </a><a href="logout.xhtml" class="aside-nav-element">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Wyloguj</span>
+                </a>
+            </nav>
+        </aside>
+        <main>
+            <ui:insert name="content"></ui:insert>
+        </main>
+        <script>
+            function toggleMenu() {
+                document.querySelector('aside').classList.toggle('show-menu');
+            }
+        </script>
+    </body>
+</html>    

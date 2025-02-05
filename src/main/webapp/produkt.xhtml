@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/panel.xhtml">
+        <ui:param name="activePage" value="produkty" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile main-tile-students">
+                    <h1>Szczegóły produktu</h1>
+                    <br/>
+                    <button class="button" onclick="window.location.href='produktEdit.xhtml?id=#{produktBB.product.productId}'">Edytuj produkt</button>
+                    <br/>
+                    <h:form>
+                        <div class="product-details">
+                            <p><strong>Nazwa:</strong> #{produktBB.product.productName} PLN</p>
+                            <p><strong>Cena:</strong> #{produktBB.product.price} PLN</p>
+                            <p><strong>Stan magazynowy:</strong> #{produktBB.product.stock}</p>
+                            <p><strong>Opis:</strong> #{produktBB.product.description}</p>
+                            <p><strong>Kategoria:</strong> #{produktBB.categoryName}</p>
+
+                            <h:graphicImage value="#{produktBB.product.image}" alt="Zdjęcie produktu" 
+                                            styleClass="product-image" rendered="#{not empty produktBB.product.image}" />
+                        </div>
+
+                        <h:commandButton value="Powrót do listy" action="produkty.xhtml?faces-redirect=true" styleClass="button"/>
+                    </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

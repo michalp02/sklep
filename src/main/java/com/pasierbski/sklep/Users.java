@@ -29,7 +29,8 @@ import java.io.Serializable;
     @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username"),
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
     @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
-    @NamedQuery(name = "Users.findByDefaultAddress", query = "SELECT u FROM Users u WHERE u.defaultAddress = :defaultAddress")})
+    @NamedQuery(name = "Users.findByRole", query = "SELECT u FROM Users u WHERE u.role = :role"),
+    @NamedQuery(name = "Users.findByUsernameAndPassword", query = "SELECT u FROM Users u WHERE u.username = :username AND u.password = :password")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,8 +57,8 @@ public class Users implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "default_address")
-    private int defaultAddress;
+    @Column(name = "role")
+    private int role;
 
     public Users() {
     }
@@ -66,12 +67,12 @@ public class Users implements Serializable {
         this.userId = userId;
     }
 
-    public Users(Integer userId, String username, String password, String email, int defaultAddress) {
+    public Users(Integer userId, String username, String password, String email, int role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.defaultAddress = defaultAddress;
+        this.role = role;
     }
 
     public Integer getUserId() {
@@ -106,12 +107,12 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public int getDefaultAddress() {
-        return defaultAddress;
+    public int getRole() {
+        return role;
     }
 
-    public void setDefaultAddress(int defaultAddress) {
-        this.defaultAddress = defaultAddress;
+    public void setRole(int role) {
+        this.role = role;
     }
 
     @Override

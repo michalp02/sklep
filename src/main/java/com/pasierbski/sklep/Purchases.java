@@ -32,11 +32,7 @@ import java.util.Date;
     @NamedQuery(name = "Purchases.findByUserId", query = "SELECT p FROM Purchases p WHERE p.userId = :userId"),
     @NamedQuery(name = "Purchases.findByCreateTime", query = "SELECT p FROM Purchases p WHERE p.createTime = :createTime"),
     @NamedQuery(name = "Purchases.findByPaymentTime", query = "SELECT p FROM Purchases p WHERE p.paymentTime = :paymentTime"),
-    @NamedQuery(name = "Purchases.findByPaymentMethod", query = "SELECT p FROM Purchases p WHERE p.paymentMethod = :paymentMethod"),
-    @NamedQuery(name = "Purchases.findByAddress", query = "SELECT p FROM Purchases p WHERE p.address = :address"),
-    @NamedQuery(name = "Purchases.findByShippingMethod", query = "SELECT p FROM Purchases p WHERE p.shippingMethod = :shippingMethod"),
-    @NamedQuery(name = "Purchases.findByShippingStatus", query = "SELECT p FROM Purchases p WHERE p.shippingStatus = :shippingStatus"),
-    @NamedQuery(name = "Purchases.findByIsDelivered", query = "SELECT p FROM Purchases p WHERE p.isDelivered = :isDelivered")})
+    @NamedQuery(name = "Purchases.findByPaymentMethod", query = "SELECT p FROM Purchases p WHERE p.paymentMethod = :paymentMethod")})
 public class Purchases implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,17 +55,6 @@ public class Purchases implements Serializable {
     private Date paymentTime;
     @Column(name = "payment_method")
     private Integer paymentMethod;
-    @Column(name = "address")
-    private Integer address;
-    @Column(name = "shipping_method")
-    private Integer shippingMethod;
-    @Size(max = 255)
-    @Column(name = "shipping_status")
-    private String shippingStatus;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_delivered")
-    private short isDelivered;
 
     public Purchases() {
     }
@@ -78,11 +63,10 @@ public class Purchases implements Serializable {
         this.purchaseId = purchaseId;
     }
 
-    public Purchases(Integer purchaseId, int userId, Date createTime, short isDelivered) {
+    public Purchases(Integer purchaseId, int userId, Date createTime) {
         this.purchaseId = purchaseId;
         this.userId = userId;
         this.createTime = createTime;
-        this.isDelivered = isDelivered;
     }
 
     public Integer getPurchaseId() {
@@ -123,38 +107,6 @@ public class Purchases implements Serializable {
 
     public void setPaymentMethod(Integer paymentMethod) {
         this.paymentMethod = paymentMethod;
-    }
-
-    public Integer getAddress() {
-        return address;
-    }
-
-    public void setAddress(Integer address) {
-        this.address = address;
-    }
-
-    public Integer getShippingMethod() {
-        return shippingMethod;
-    }
-
-    public void setShippingMethod(Integer shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
-
-    public String getShippingStatus() {
-        return shippingStatus;
-    }
-
-    public void setShippingStatus(String shippingStatus) {
-        this.shippingStatus = shippingStatus;
-    }
-
-    public short getIsDelivered() {
-        return isDelivered;
-    }
-
-    public void setIsDelivered(short isDelivered) {
-        this.isDelivered = isDelivered;
     }
 
     @Override

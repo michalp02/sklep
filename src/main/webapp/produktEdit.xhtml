@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/panel.xhtml">
+        <ui:param name="activePage" value="produkty" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile main-tile-students">
+                    <h1>Edytuj produkt</h1>
+                    <br/>
+                    <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="productName" value="Nazwa produktu:"/>
+                        <h:inputText id="productName" value="#{produktEditBB.product.productName}" styleClass="simple-select"/>
+
+                        <h:outputLabel for="productPrice" value="Cena:"/>
+                        <h:inputText id="productPrice" value="#{produktEditBB.product.price}" styleClass="simple-select"/>
+
+                        <h:outputLabel for="productDescription" value="Opis:"/>
+                        <h:inputTextarea id="productDescription" value="#{produktEditBB.product.description}" styleClass="simple-select"/>
+
+                        <h:outputLabel for="productStock" value="Stan magazynowy:"/>
+                        <h:inputText id="productStock" value="#{produktEditBB.product.stock}" styleClass="simple-select"/>
+
+                        <h:outputLabel for="productImage" value="Zdjęcie (URL):"/>
+                        <h:inputText id="productImage" value="#{produktEditBB.product.image}" styleClass="simple-select"/>
+                    </h:panelGrid>
+
+                    <br/>
+
+                    <h:commandButton value="Zapisz zmiany" action="#{produktEditBB.saveProdukt}" styleClass="button"/>
+                    <h:commandButton value="Anuluj" action="produkty.xhtml?faces-redirect=true" styleClass="button"/>
+                </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

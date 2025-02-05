@@ -1,0 +1,250 @@
+body {
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+.kasjer_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.kasjer_section {
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kasjer_left {
+    width: 500px;
+    background-color: #1A1A1A;
+    color: #f5f5f5;
+    justify-content: center;
+}
+
+.kasjer_right {
+    /* width: calc(100% - 500px); */
+    width: 100%;
+    background-color: #f5f5f5;
+    color: #1A1A1A;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+.kasjer_logo_section img {
+    width: 200px;
+}
+
+.kasjer_config_section {
+    padding: 20px;
+}
+
+.kasjer_config_section h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.kasjer_config_section h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.kasjer_config_section > p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    margin-top: -20px;
+    width: 100%;
+}
+
+.kasjer_config_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+
+}
+
+.kasjer_form_element {
+    margin-bottom: 20px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.kasjer_form_element.hidden {
+    display: none;
+}
+
+.kasjer_form_element label {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.kasjer_form_element input, .kasjer_form_element select {
+    width: 100%;
+    height: 40px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #1A1A1A;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+    box-sizing: content-box;
+}
+
+p.nip_error, p.setup_error, .login_error, .form-error {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #f44336;
+}
+
+.kasjer_form_element input:focus {
+    border: 1px solid #1A1A1A;
+}
+
+.kasjer_form_element input:invalid {
+    border: 1px solid #1A1A1A;
+}
+
+.kasjer_form_element input:valid {
+    border: 1px solid #3f8d3f;
+}
+
+.kasjer_form_element button {
+    width: 200px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #1A1A1A;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    outline: none;
+    background-color: #1A1A1A;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    margin: auto;
+    display: block;
+}
+
+.kasjer_form_element button:hover {
+    background-color: #333;
+}
+
+.kasjer_form_element button.disabled {
+    background-color: #f5f5f5;
+    color: #1A1A1A;
+    cursor: not-allowed;
+}
+
+.kasjer_form_element button.disabled:hover {
+    background-color: #f5f5f5;
+    color: #1A1A1A;
+}
+
+.kasjer_form_element button.loading {
+    background-color: #1A1A1A;
+    color: #f5f5f5;
+    cursor: wait;
+}
+
+.kasjer_form_element button.loading:hover {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+}
+
+
+.kasjer_config_footer {
+    display: block;
+    padding: 20px;
+    position: fixed;
+    bottom: 5px;
+    right: 25px;
+}
+
+.kasjer_config_footer p {
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.kasjer_config_footer a {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1A1A1A;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.kasjer_config_footer a:hover {
+    color: #333;
+}
+
+
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    margin: -8px;
+    width: 30px;
+    height: 30px;
+}
+.path {
+    stroke: white;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+    @keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+    @keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+::selection {
+    background-color: #1A1A1A;
+    color: #f5f5f5;
+}
+
+:not(input):not(textarea) {
+    -webkit-user-select: none;
+    user-select: none; 
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/panel.xhtml">
+        <ui:param name="activePage" value="produkty" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile">
+                    <h1>Nowy produkt</h1>
+                    <br/>
+                    <h:form>
+                        <div class="form-group">
+                            <label for="productName">Nazwa produktu</label>
+                            <h:inputText id="productName" value="#{produktNewBB.productName}" styleClass="simple-select" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Cena (PLN)</label>
+                            <h:inputText id="productPrice" value="#{produktNewBB.productPrice}" styleClass="simple-select" u:placeholder="0.00" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productDescription">Opis</label>
+                            <h:inputTextarea id="productDescription" value="#{produktNewBB.productDescription}" styleClass="simple-select" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Kategoria</label>
+                            <h:selectOneMenu id="productCategory" value="#{produktNewBB.productCategory}" styleClass="simple-select">
+                                <f:selectItems value="#{produktNewBB.categories}" var="cat" itemValue="#{cat.categoryId}" itemLabel="#{cat.categoryName}" />
+                            </h:selectOneMenu>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productStock">Stan magazynowy</label>
+                            <h:inputText id="productStock" value="#{produktNewBB.productStock}" styleClass="simple-select" u:placeholder="0" />
+
+                        <div class="form-group">
+                            <label for="productImage">Zdjęcie</label>
+                            <h:inputText id="productImage" value="#{produktNewBB.productImage}" styleClass="simple-select" />
+                        </div>
+
+                        <div class="form-group">
+                            <h:commandButton value="Dodaj" action="#{produktNewBB.addProdukt}" styleClass="button" />
+                        </div>
+                    </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>
