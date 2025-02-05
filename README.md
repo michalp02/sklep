@@ -9,6 +9,7 @@ Projekt aplikacji na zajęcia z przedmiotu "Języki Programowania Dynamicznych S
 - [Wprowadzenie](#wprowadzenie)
 - [Funkcje](#funkcje)
 - [Użycie](#użycie)
+- [Podgląd](#podgląd)
 - [Demo](#demo)
 - [Licencja](#licencja)
 
