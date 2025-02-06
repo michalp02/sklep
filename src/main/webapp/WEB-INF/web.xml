@@ -48,9 +48,6 @@
             <param-value>
                 /jakarta.faces.resource : PUBLIC;
                 / : PUBLIC;
-                /index.xhtml : PUBLIC;
-                /login.xhtml : PUBLIC;
-                /info.xhtml : 1, 2;
             </param-value>
         </init-param>
     

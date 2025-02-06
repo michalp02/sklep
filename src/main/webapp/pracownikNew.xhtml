@@ -13,24 +13,12 @@
         <ui:define name="content">
             <section class="main-tiles">
                 <div class="main-tile main-tile-students">
-                    <h1>Pracownik</h1>
+                    <h1>Nowy pracownik</h1>
                     <br/>
-                    <button class="button" onclick="window.location.href='pracownikEdit.xhtml?id=#{userProfileBB.user.userId}'">Edytuj pracownika</button>
-                    <br/>
-                    <br/>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="ID:" />
-                        <h:outputText value="#{userProfileBB.user.userId}" />
+                    <h:form>
                         
-                        <h:outputLabel value="Nazwa użytkownika:" />
-                        <h:outputText value="#{userProfileBB.user.username}" />
-                        
-                        <h:outputLabel value="Email:" />
-                        <h:outputText value="#{userProfileBB.user.email}" />
-                        
-                        <h:outputLabel value="Rola:" />
-                        <h:outputText value="#{userProfileBB.userRole}" />
-                    </h:panelGrid>
+                    </h:form>
+        
                     <br/>
                     <button class="button" onclick="window.location.href='pracownicy.xhtml'">Powrót do listy pracowników</button>
                 </div>

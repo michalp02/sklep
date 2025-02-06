@@ -6,14 +6,12 @@
     xmlns:f="jakarta.faces.core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <ui:composition template="/templates/panel.xhtml">
+    <ui:composition template="/templates/panel-template.xhtml">
         <ui:param name="activePage" value="profil" />
         <ui:define name="content">
             <section class="main-tiles">
                 <div class="main-tile main-tile-students">
                     <h1>Mój profil</h1>
-                    <br/>
-                    <button class="button" onclick="window.location.href='zmienHaslo.xhtml'">Zmień hasło</button>
                     <br/>
                     <br/>
                     <h:panelGrid columns="2">

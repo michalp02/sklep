@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/pos-template.xhtml">
+        <ui:define name="grid">
+            <section class="main-optionsgrid">
+                <ui:repeat var="product" value="#{posProduktyBB.produkty}">
+                    <a class="main-optionsgrid-tile" href="pos_dodaj.xhtml?productId=#{product.productId}">
+                        <div class="main-optionsgrid-tile-text">#{product.productName}<br/>#{product.price} zł</div>
+                    </a>
+                </ui:repeat>
+                <a class="main-optionsgrid-tile main-sum-grid main-optionsgrid-tile-4" href="pos.xhtml">
+                    <div class="main-optionsgrid-tile-text"><br/>[anuluj]<br/></div>
+                </a>
+            </section>
+        </ui:define>
+    </ui:composition>
+    
+</html>

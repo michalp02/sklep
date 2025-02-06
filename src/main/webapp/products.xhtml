@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/templates/main-template.xhtml">
+    <ui:define name="title">Strona główna</ui:define>
+    <ui:define name="content">
+        
+        <div class="books-container">
+            <ui:repeat var="produkt" value="#{productListBB.getList()}">
+                <div class="book-card">
+
+                     <h:graphicImage library="template" name="#{product.image}" alt="#{product.product_name}" />
+                    
+                    <h3>#{product.product_name}</h3>
+                    <p>#{product.price} zł</p>
+                    <p><a href="productDetails.xhtml?id=#{product.product_id}">Szczegóły produktu</a></p>
+
+                </div>
+            </ui:repeat>
+        </div>
+    </ui:define>
+</ui:composition>
+
+
+
+</html>

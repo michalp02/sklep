@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{redirectBean.panelRedirect}" />
+    </f:metadata>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sklep</title>
+    <link rel="stylesheet" href="#{resource['template:css/pos_interface.css']}"/>
+    <link rel="icon" href="#{resource['template:img/sklep_icon.png']}"/>
+</head>
+<body>
+    <section class="topnav">
+        <div class="topnav-logo">
+            <img src="#{resource['template:img/sklep_large.png']}" alt="Logo"/>
+        </div>
+        <div class="topnav-profile">
+            <div class="topnav-profile-name">
+                <p>#{sessionScope.user.username}</p>
+            </div>
+            <div class="topnav-profile-image" onclick="window.location.href='panel.xhtml'">
+                <img src="#{resource['template:img/profile.svg']}" alt="Profil"/>
+            </div>
+        </div>
+    </section>
+    <main>
+        <section class="main-current-receipt">
+            <div class="current-receipt-header">AKTUALNY PARAGON</div>
+            <div class="current-receipt-items">
+                <ui:repeat var="item" value="#{cartBB.cartItems}">
+                    <div class="current-receipt-item">
+                        <div class="current-receipt-item-details">
+                            <div class="current-receipt-item-name" onclick="if(confirm('Czy chcesz usunąć ten produkt?')) window.location.href='pos_usun.xhtml?productId=#{item.product.productId}';">
+                                #{item.quantity} x #{item.product.productName}
+                            </div>
+                            <div class="current-receipt-item-price">
+                                #{item.product.price * item.quantity} zł
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </section>
+        <ui:insert name="grid"></ui:insert>
+    </main>
+</body>
+</html>

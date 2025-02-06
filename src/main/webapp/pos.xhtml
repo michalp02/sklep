@@ -3,224 +3,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:f="jakarta.faces.core">
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{redirectBean.panelRedirect}" />
-    </f:metadata>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sklep</title>
-    <link rel="stylesheet" href="#{resource['template:css/pos_interface.css']}"/>
-    <link rel="icon" href="#{resource['template:img/sklep_icon.png']}"/>
-</head>
-<body>
-    <section class="topnav">
-        <div class="topnav-logo">
-            <img src="#{resource['template:img/sklep_large.png']}" alt="Logo"/>
-        </div>
-        <div class="topnav-profile">
-            <div class="topnav-profile-name">
-                <p>Kasjer</p>
-            </div>
-            <div class="topnav-profile-image" onclick="window.location.href='panel.xhtml'">
-                <img src="#{resource['template:img/profile.svg']}" alt="Profil"/>
-            </div>
-        </div>
-    </section>
-    <main>
-        <section class="main-current-receipt">
-            <div class="current-receipt-header">AKTUALNY PARAGON</div>
-            <div class="current-receipt-items">
-                <div class="current-receipt-item">
-                    <div class="current-receipt-item-details">
-                        <div class="current-receipt-item-name">1 x Makaron Lubella 500g</div>
-                        <div class="current-receipt-item-price">7,99 zł</div>
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/templates/pos-template.xhtml">
+        <ui:define name="grid">
+            <section class="main-optionsgrid">
+                <a class="main-optionsgrid-tile" href="#" onclick="window.location.href='pos_produkty.xhtml?search=' + prompt('Wpisz nazwę produktu');return false;">
+                    <div class="main-optionsgrid-tile-text">Wyszukaj produkt</div>
+                </a>
+                <a class="main-optionsgrid-tile" href="pos_produkty.xhtml">
+                    <div class="main-optionsgrid-tile-text">Wszystkie produkty</div>
+                </a>
+                <a class="main-optionsgrid-tile" href="#" onclick="if(confirm('Czy na pewno chcesz anulować paragon?')){window.location.href='pos_anuluj.xhtml';}return false;">
+                    <div class="main-optionsgrid-tile-text">Anuluj paragon</div>
+                </a>
+                <ui:repeat var="category" value="#{kategoriaListBB.getKategorie()}">
+                    <a class="main-optionsgrid-tile" href="pos_produkty.xhtml?categoryId=#{category.categoryId}">
+                        <div class="main-optionsgrid-tile-text">Kategoria:<br/>#{category.categoryName}</div>
+                    </a>
+                </ui:repeat>
+                <div class="main-optionsgrid-tile main-optionsgrid-tile-4 main-sum-grid">
+                    <div class="main-sum">
+                        <div class="main-sum-text">DO ZAPŁATY</div>
+                        <div class="main-sum-price">#{cartBB.totalPrice} zł</div>
+                    </div>
+                    <div class="main-sum-button" onclick="window.location.href='pos_summary.xhtml'">
+                        <div class="main-sum-button-text">NALEŻNOŚĆ</div>
                     </div>
                 </div>
-                <div class="current-receipt-item">
-                    <div class="current-receipt-item-details">
-                        <div class="current-receipt-item-name">2 x Frugo Zielone 250ml</div>
-                        <div class="current-receipt-item-price">14,98 zł</div>
-                    </div>
-                </div>
-                <div class="current-receipt-item">
-                    <div class="current-receipt-item-details">
-                        <div class="current-receipt-item-name">1 x Lech Premium But. 500ml</div>
-                        <div class="current-receipt-item-price">4,99 zł</div>
-                    </div>
-                </div>
-                <div class="current-receipt-item">
-                    <div class="current-receipt-item-details">
-                        <div class="current-receipt-item-name">2 x Żywiec Zdrój gaz. 250ml</div>
-                        <div class="current-receipt-item-price">4,98 zł</div>
-                    </div>
-                </div>
-                <div class="current-receipt-item">
-                    <div class="current-receipt-item-details">
-                        <div class="current-receipt-item-name">1 x Lay's Ziel.Cebulka 130g</div>
-                        <div class="current-receipt-item-price">10,98 zł</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="main-optionsgrid">
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Owoce i warzywa</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Świeże wypieki</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Gorące napoje</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Wyszukaj produkt</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Nabiał</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Mięso i wędliny</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Słodycze</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Wprowadź kod ręcznie</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Otwórz kasetkę</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Anuluj paragon</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Dolicz reklamówkę</div>
-            </div>
-            <div class="main-optionsgrid-tile">
-                <div class="main-optionsgrid-tile-text">Zwrot opakowań</div>
-            </div>
-            <div class="main-optionsgrid-tile main-optionsgrid-tile-4 main-sum-grid">
-                <div class="main-sum">
-                    <div class="main-sum-text">DO ZAPŁATY</div>
-                    <div class="main-sum-price">42,92 zł</div>
-                </div>
-                <div class="main-sum-button">
-                    <div class="main-sum-button-text">NALEŻNOŚĆ</div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <aside>
-        <div class="popup-background"></div>
-        <section class="popup popup-fullscreen popup-itemselect" id="popup-1">
-            <div class="popup-header">
-                <div class="popup-navigation-back">&lt;</div>
-                <div class="popup-title">Owoce i warzywa</div>
-                <div class="popup-navigation-close" onclick="closePopup(1)">x</div>
-            </div>
-            <div class="popup-content popup-content-grid">
-                <div class="popup-content-grid-tile" onclick="paragon.dodajProdukt('Ananas', 1, 5.99);paragon.aktualizuj();closePopup(1)">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/pineaple.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Ananas</div>
-                </div>
-                <div class="popup-content-grid-tile" onclick="paragon.dodajProdukt('Jabłko', 1, 2.99);paragon.aktualizuj();closePopup(1)">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/apple.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Jabłko</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/banana.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Banan</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/strawberry.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Truskawka</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/pear.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Gruszka</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/lemon.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Cytryna</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/pineaple.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Ananas</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/apple.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Jabłko</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/banana.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Banan</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/strawberry.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Truskawka</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/pear.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Gruszka</div>
-                </div>
-                <div class="popup-content-grid-tile">
-                    <div class="popup-content-grid-tile-icon">
-                        <img src="#{resource['template:img/fruit/lemon.png']}" alt="Zdjęcie produktu"/>
-                    </div>
-                    <div class="popup-content-grid-tile-text">Cytryna</div>
-                </div>
-            </div>
-        </section>
-        <div class="product-contextmenu" onfocusout="this.style.display = 'none'">
-        </div>
-        <div class="popup-szukaj" id="popup-szukaj">
-            <div class="popup-header">
-                <!-- <div class="popup-navigation-back">&lt;</div> -->
-                <div class="popup-title">Szukaj produktu</div>
-                <div class="popup-navigation-close" onclick="closePopup('szukaj')">x</div>
-            </div>
-            <div class="popup-szukaj-input">
-                <input type="text" placeholder="Wyszukaj produkt" oninput="szukajProduktu(this.value)"/>
-            </div>
-            <div class="popup-content popup-content-grid" id="popup-szukaj-results">
-            </div>
-        </div>
-        <div class="popup-recznie" id="popup-recznie">
-            <div class="popup-header">
-                <!-- <div class="popup-navigation-back">&lt;</div> -->
-                <div class="popup-title">Podaj kod produktu</div>
-                <div class="popup-navigation-close" onclick="closePopup('recznie')">x</div>
-            </div>
-            <div class="popup-recznie-input">
-                <input type="text" placeholder="Wpisz kod produktu" oninput="szukajKodu(this.value)"/>
-            </div>
-            <div class="popup-content popup-content-grid" id="popup-recznie-results">
-            </div>
-        </div>
-    </aside>
-</body>
+            </section>
+        </ui:define>
+    </ui:composition>
+
 </html>

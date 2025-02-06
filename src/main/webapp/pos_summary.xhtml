@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <h:title>Podsumowanie Zakupu</h:title>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <f:event type="preRenderView" listener="#{posSummaryBB.loadReceipt}" />
+            
+            <h:outputText value="Dziękujemy za zakupy!" style="font-size:20px; font-weight:bold;"/>
+
+            <h:dataTable value="#{posSummaryBB.ordersList}" var="order">
+                <h:column>
+                    <f:facet name="header">Produkt</f:facet>
+                    #{purchaseBB.getProductName(order.productId)}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ilość</f:facet>
+                    #{order.quantity}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cena jednostkowa</f:facet>
+                    #{order.unitPrice}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Cena</f:facet>
+                    #{order.unitPrice * order.quantity}
+                </h:column>
+            </h:dataTable>
+
+            <h:outputText value="Razem do zapłaty: #{posSummaryBB.totalPrice}" style="font-size:18px; font-weight:bold;"/>
+            <br/>
+            <h:commandButton value="Wróć do POS" action="#{posSummaryBB.backToPos}" style="margin-top:20px;" styleClass="btn-noprint"/>
+
+        </h:form>
+        <style>
+
+            @media print {
+                .btn-noprint {
+                    display: none;
+                }
+            }
+        </style>
+        <script>
+            window.print();
+        </script>
+    </h:body>
+</html>

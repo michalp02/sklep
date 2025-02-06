@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{redirectBean.adminRedirect}" />
+    </f:metadata>
+    <ui:composition template="/templates/panel-template.xhtml">
+        <ui:param name="activePage" value="pracownicy" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile main-tile-students">
+                    <h1>Edycja Pracownika</h1>
+                    <br/>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="ID:" />
+                            <h:outputText value="#{userEditBB.user.userId}" />
+        
+                            <h:outputLabel value="Nazwa użytkownika:" />
+                            <h:inputText value="#{userEditBB.user.username}" />
+        
+                            <h:outputLabel value="Email:" />
+                            <h:inputText value="#{userEditBB.user.email}" />
+        
+                            <h:outputLabel value="Rola:" />
+                            <h:selectOneMenu value="#{userEditBB.user.role}">
+                                <f:selectItem itemValue="1" itemLabel="Administrator"/>
+                                <f:selectItem itemValue="2" itemLabel="Kasjer"/>
+                            </h:selectOneMenu>
+                            <h:inputHidden name="id" value="#{userEditBB.user.userId}" />
+                        </h:panelGrid>
+                        <br/>
+        
+                        <h:commandButton value="Zapisz" action="#{userEditBB.saveUser}" styleClass="button"/>
+                    </h:form>
+        
+                    <br/>
+                    <button class="button" onclick="window.location.href='pracownicy.xhtml'">Powrót do listy pracowników</button>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>
+</html>

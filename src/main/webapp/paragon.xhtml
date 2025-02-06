@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="jakarta.faces.core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{redirectBean.adminRedirect}" />
+    </f:metadata>
+    <ui:composition template="/templates/panel-template.xhtml">
+        <ui:param name="activePage" value="paragony" />
+        <ui:define name="content">
+            <section class="main-tiles">
+                <div class="main-tile main-tile-students">
+                    <h1>Paragon ##{purchaseBB.purchase.purchaseId}</h1>
+                    <h3>Data zakupu: #{purchaseBB.purchase.createTime}</h3>
+                    <br/>
+                    <br/>
+                    <h2>Pozycje:</h2>
+                    <hr/>
+                    <ui:repeat var="order" value="#{purchaseBB.orders}">
+                        <div class="order-item">
+                            <p>Produkt: #{purchaseBB.getProductName(order.productId)}</p>
+                            <p>Ilość: #{order.quantity}</p>
+                            <p>Cena jednostkowa: #{order.unitPrice} zł</p>
+                            <p>VAT: #{order.vat}%</p>
+                            <p>Wartość: #{order.quantity * order.unitPrice} zł</p>
+                            <hr/>
+                        </div>
+                    </ui:repeat>
+
+                    <h3>Łączna wartość: #{purchaseBB.totalPrice} zł</h3>
+                    <br/>
+                    <br/>
+                    <button class="button" onclick="window.location.href='paragony.xhtml'">Powrót do listy paragonów</button>
+                </div>
+            </section>            
+        </ui:define>
+    </ui:composition>
+</html>

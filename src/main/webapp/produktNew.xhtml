@@ -6,8 +6,10 @@
     xmlns:f="jakarta.faces.core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:u="http://xmlns.jcp.org/jsf/passthrough">
-
-    <ui:composition template="/templates/panel.xhtml">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{redirectBean.adminRedirect}" />
+    </f:metadata>
+    <ui:composition template="/templates/panel-template.xhtml">
         <ui:param name="activePage" value="produkty" />
         <ui:define name="content">
             <section class="main-tiles">
@@ -40,7 +42,8 @@
                         <div class="form-group">
                             <label for="productStock">Stan magazynowy</label>
                             <h:inputText id="productStock" value="#{produktNewBB.productStock}" styleClass="simple-select" u:placeholder="0" />
-
+                        </div>
+                        
                         <div class="form-group">
                             <label for="productImage">Zdjęcie</label>
                             <h:inputText id="productImage" value="#{produktNewBB.productImage}" styleClass="simple-select" />
