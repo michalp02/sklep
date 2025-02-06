@@ -16,7 +16,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,6 +27,7 @@ import java.util.Date;
 @Table(name = "purchases")
 @NamedQueries({
     @NamedQuery(name = "Purchases.findAll", query = "SELECT p FROM Purchases p"),
+    @NamedQuery(name = "Purchases.findAllReverse", query = "SELECT p FROM Purchases p ORDER BY p.purchaseId DESC"),
     @NamedQuery(name = "Purchases.findByPurchaseId", query = "SELECT p FROM Purchases p WHERE p.purchaseId = :purchaseId"),
     @NamedQuery(name = "Purchases.findByUserId", query = "SELECT p FROM Purchases p WHERE p.userId = :userId"),
     @NamedQuery(name = "Purchases.findByCreateTime", query = "SELECT p FROM Purchases p WHERE p.createTime = :createTime"),
@@ -45,11 +45,13 @@ public class Purchases implements Serializable {
     @NotNull
     @Column(name = "user_id")
     private int userId;
+    @SuppressWarnings("deprecation")
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @SuppressWarnings("deprecation")
     @Column(name = "payment_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date paymentTime;

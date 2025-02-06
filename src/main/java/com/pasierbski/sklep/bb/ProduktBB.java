@@ -4,7 +4,7 @@ import com.pasierbski.sklep.Products;
 import com.pasierbski.sklep.Categories;
 import com.pasierbski.sklep.dao.ProductDAO;
 import com.pasierbski.sklep.dao.CategoryDAO;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.faces.context.FacesContext;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 @Named("produktBB")
-@RequestScoped
+@SessionScoped
 public class ProduktBB implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,6 +27,7 @@ public class ProduktBB implements Serializable {
     private String categoryName; // Przechowuje nazwę kategorii
 
     public ProduktBB() {
+        
     }
 
     public Products getProduct() {

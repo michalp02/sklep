@@ -4,6 +4,8 @@ import com.pasierbski.sklep.Products;
 import com.pasierbski.sklep.Categories;
 import com.pasierbski.sklep.dao.ProductDAO;
 import com.pasierbski.sklep.dao.CategoryDAO;
+
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -39,6 +41,12 @@ public class ProduktEditBB implements Serializable {
     public ProduktEditBB() {
     }
 
+    @PostConstruct
+    public void init() {
+        getProduct();
+    }
+
+    
     public Products getProduct() {
         if (product == null) {
             Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

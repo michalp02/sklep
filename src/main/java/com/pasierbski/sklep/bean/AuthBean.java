@@ -15,7 +15,7 @@ import jakarta.inject.Named;
 import jakarta.faces.simplesecurity.RemoteClient;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import java.util.HashSet;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -31,6 +31,7 @@ public class AuthBean {
     @Inject
     private UserDAO userDAO;
     
+    @SuppressWarnings({ "rawtypes", "unused" })
     @Inject
     private RemoteClient remoteClient;
     

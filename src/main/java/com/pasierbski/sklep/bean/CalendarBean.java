@@ -5,8 +5,6 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 @Named("calendarBean")
 @SessionScoped

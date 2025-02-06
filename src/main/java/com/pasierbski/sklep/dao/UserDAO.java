@@ -2,13 +2,13 @@ package com.pasierbski.sklep.dao;
 
 import com.pasierbski.sklep.Users;
 
-import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.ejb.Stateless;
 import java.util.List;
 import java.util.Map;
 
-
+@Stateless
 public class UserDAO {
         
             @PersistenceContext

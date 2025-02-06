@@ -6,6 +6,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.IOException;
 import jakarta.servlet.http.HttpSession;
+import com.pasierbski.sklep.Users;
 
 @Named
 @RequestScoped
@@ -37,6 +38,24 @@ public class RedirectBean {
         try {
             if (session == null || session.getAttribute("user") == null) {
                 externalContext.redirect("login.xhtml"); // Przekierowanie dla niezalogowanych
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Metoda zabezpeczająca strony tylko dla administratora - przekierowuje na stronę panelu jeśli użytkownik jest zalogowany, ale nie jest administratorem
+    public void adminRedirect() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        HttpSession session = (HttpSession) externalContext.getSession(false);
+
+        try {
+            if (session != null && session.getAttribute("user") != null) {
+                Users user = (Users) session.getAttribute("user");
+                if (user.getRole() != 1) {
+                    externalContext.redirect("panel.xhtml"); // Przekierowanie dla zalogowanych, którzy nie są administratorem
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
